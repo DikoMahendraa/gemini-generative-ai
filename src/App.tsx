@@ -9,6 +9,7 @@ import { create } from "zustand";
 const usePrompts = (set: unknown) => ({
   prompts: [],
   addPrompts: (params: string) => {
+    // @ts-ignore
     set((state: { prompts: string }) => ({
       prompts: [...state.prompts, params],
     }));
