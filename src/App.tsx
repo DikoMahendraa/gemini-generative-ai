@@ -18,7 +18,7 @@ const usePrompts = (set: unknown) => ({
 
 const promptsStore = create(usePrompts);
 
-const genAI = new GoogleGenerativeAI(import.meta.env.VITE_SOME_KEY);
+const genAI = new GoogleGenerativeAI(import.meta.env.VITE_VERCEL_ENV);
 
 export default function App() {
   const addQuestions = promptsStore((state) => state.addPrompts);
