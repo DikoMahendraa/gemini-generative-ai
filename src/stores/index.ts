@@ -3,16 +3,30 @@ import { createJSONStorage, persist } from "zustand/middleware";
 
 interface BearState {
   prompt: string[];
-  addQuestions: (prompt: string) => void;
+  loading: boolean;
+  author: string;
+  setQuestions: (prompt: string) => void;
+  setLoading: (params: boolean) => void;
+  setAuthor: (params: string) => void;
 }
 
 export const useBearStore = create<BearState>()(
   persist(
     (set) => ({
+      author: "",
       prompt: [],
-      addQuestions: (params) =>
+      loading: false,
+      setQuestions: (params) =>
         set((state) => ({
           prompt: [...state.prompt, params],
+        })),
+      setLoading: (params) =>
+        set(() => ({
+          loading: params,
+        })),
+      setAuthor: (params) =>
+        set(() => ({
+          author: params,
         })),
     }),
     {
